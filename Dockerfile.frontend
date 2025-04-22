@@ -1,0 +1,16 @@
+# Dockerfile.frontend
+FROM node:18
+
+WORKDIR /app
+
+COPY frontend/ .
+
+RUN npm install
+RUN npm run build
+
+# Simple web server to serve React
+RUN npm install -g serve
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "build", "-l", "3000"]
